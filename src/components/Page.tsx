@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
+import { FirebaseContext } from '../../services'
 
 import { dimensions } from '../styles/variables'
 
@@ -14,7 +15,10 @@ const StyledPage = styled.div`
 interface PageProps {
   className?: string
 }
+const Page: React.FC<PageProps> = ({ children, className }) => {
+  const { isInitialized } = React.useContext(FirebaseContext)
+  console.log(`firebase instance is ${isInitialized ? 'initialized' : 'not initialized'}`)
 
-const Page: React.FC<PageProps> = ({ children, className }) => <StyledPage className={className}>{children}</StyledPage>
-
+  return <StyledPage className={className}>{children}</StyledPage>
+}
 export default Page
